@@ -39,7 +39,7 @@ It is important to make sure that `CorsMiddleware` is in the correct place becau
 With that done, all that is left is to build out a simple React App and gather data from the django endoint.
 - Assuming React is already installed, create a React app. Also, install axios. [Axios](https://github.com/axios/axios) will be used instead of FetchAPI.
 - In the app.js folder delete every thing and import the modules needed:
-  - `import React, { Component } from "react";
+  - `import React, { Component } from "react";`
   - `import axios from 'axios';`
   
 When using React to fetch API's, best practice is to make HTTP requests inside `componentDidMount`. So make a function to request the API using axios and call it from inside `componentDidMount`.
