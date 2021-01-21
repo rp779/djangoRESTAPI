@@ -1,40 +1,40 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
-const list = [
-  {
-    "id": 1,
-    "title": "Investigate 500 error for site",
-    "body": "Getting a 500 error when navigating to 'About Us' section."
-  },
-  {
-    "id": 2,
-    "title": "Add contact form to 'Contact Us' section",
-    "body": "Add a contact form to the contact section. Make sure to add correct model as well."
-  },
-  {
-    "id": 3,
-    "title": "Clean up search feature", "body": "Limit output of available search queries for search feature."
-  }
-];
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { list }
+  state = {
+    todos: []
+  };
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos() {
+    axios
+      .get('http://127.0.0.1:8000/api')
+      .then(res => {
+        this.setState({ todos: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
     return (
       <div>
-        {this.state.list.map(item => (
+        {this.state.todos.map(item => (
           <div key={item.id}>
             <h1>{item.title}</h1>
-            <p>{item.body}</p>
+            <span>{item.body}</span>
           </div>
         ))}
       </div>
     )
   }
 }
+
 
 export default App;
